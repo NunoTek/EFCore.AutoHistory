@@ -13,7 +13,7 @@ namespace EFCore.AutoHistory.Extensions;
 /// </summary>
 public static class DbContextExtensions
 {
-    internal static ConcurrentQueue<EntityEntry> AddedEntries { get; set; }
+    internal static ConcurrentQueue<EntityEntry> AddedEntries { get; set; } = new();
 
 
     /// <summary>
@@ -43,8 +43,13 @@ public static class DbContextExtensions
             return;
 
         var addedEntries = new List<EntityEntry>();
-        while (AddedEntries.TryDequeue(out EntityEntry entry))
-            addedEntries.Add(entry);
+        while (AddedEntries.TryDequeue(out EntityEntry? entry))
+        {
+            if (entry != null)
+            {
+                addedEntries.Add(entry);
+            }
+        }
 
         EnsureEntriesHistory(context, () => new Models.AutoHistory(), addedEntries.ToArray(), false, true);
     }
@@ -71,6 +76,7 @@ public static class DbContextExtensions
         history.RowId = entry.PrimaryKey();
         history.Kind = recentlyAdded ? EntityState.Added : entry.State;
         history.Changed = !string.IsNullOrEmpty(changed) ? changed : null;
+        history.Created = DateTime.UtcNow;
 
         return history;
     }

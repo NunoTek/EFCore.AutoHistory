@@ -1,20 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
 	<Authors>Nuno ARAUJO</Authors>
 	<Description>EFCore.AutoHistory is a .NET library that automatically tracks and records data changes in your Entity Framework Core applications.</Description>
 
-	<!--<PackageReadmeFile>..\README.md</PackageReadmeFile>-->
+	<PackageReadmeFile>..\README.md</PackageReadmeFile>
 	<RepositoryUrl>https://github.com/NunoTek/EFCore.AutoHistory</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 
 	<EnablePackageValidation>true</EnablePackageValidation>
 	<!-- Optional: Detect breaking changes from a previous version -->
-	<!-- <PackageValidationBaselineVersion>1.0.0</PackageValidationBaselineVersion> -->
+	 <PackageValidationBaselineVersion>1.0.0</PackageValidationBaselineVersion> 
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
   </ItemGroup>
 
 </Project>
